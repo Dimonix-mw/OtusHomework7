@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data;
 
-namespace WebApi
+namespace WebApi.Data
 {
     public class DapperContext
     {

@@ -1,10 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace WebApi.Models
+namespace WebApi.Domain.Entities
 {
     public class Customer
     {
-        public long Id { get; init; }
+        public long CustomerId { get; init; }
         
         [Required]
         public string Firstname { get; init; }

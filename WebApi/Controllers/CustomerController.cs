@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Models;
+using WebApi.Data.Repositories;
+using WebApi.Domain.Repositories;
+using WebApi.DTOs;
 
 namespace WebApi.Controllers
 {
@@ -7,23 +9,43 @@ namespace WebApi.Controllers
     [Route("[controller]")]
     public class CustomerController : ControllerBase
     {
-        private readonly ILogger<CustomerController> _logger;
-
-        public CustomerController(ILogger<CustomerController> logger)
+        private readonly ICustomerRepository _customerRepository;
+        public CustomerController(ICustomerRepository customerRepository)
         {
-            _logger = logger;
+            _customerRepository = customerRepository;
         }
 
         [HttpGet("{id:long}", Name = "GetCustomerById") ]
-        public Task<Customer> GetCustomerAsync([FromRoute] long id)
+        public async Task<IActionResult> GetCustomerAsync([FromRoute] long id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var customer = await _customerRepository.GetByIdAsync(id);
+                if (customer == null) return NotFound();
+                return Ok(
+                    customer
+                );
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPost("")]
-        public Task<long> CreateCustomerAsync([FromBody] Customer customer)
+        public async Task<IActionResult> CreateCustomerAsync([FromBody] CreateCustomerDto createCustomerDto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var customerId = await _customerRepository.CreateAsync(createCustomerDto);
+                return Ok(customerId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(404, ex.Message);
+            }
         }
     }
 }

@@ -1,13 +1,15 @@
-using WebApi;
+using WebApi.Data;
+using WebApi.Data.Repositories;
+using WebApi.Domain.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddSingleton<DapperContext>();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<DapperContext>();
 
 var app = builder.Build();
 

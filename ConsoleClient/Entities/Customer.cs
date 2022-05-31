@@ -1,8 +1,8 @@
-namespace WebClient
+namespace ConsoleClient.Entities
 {
     public class Customer
     {
-        public long Id { get; init; }
+        public long CustomerId { get; init; }
 
         public string Firstname { get; init; }
 
