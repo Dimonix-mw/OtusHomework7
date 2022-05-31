@@ -44,7 +44,7 @@ namespace WebApi.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return StatusCode(404, ex.Message);
+                return StatusCode(409, ex.Message);
             }
         }
     }
