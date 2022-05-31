@@ -2,6 +2,9 @@ namespace WebClient
 {
     public class CustomerCreateRequest
     {
+        /// <summary>
+        /// Модель запроса на создание Customer для отправки в WebApi
+        /// </summary>
         public CustomerCreateRequest()
         {
         }

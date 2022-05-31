@@ -3,6 +3,9 @@ using WebApi.DTOs;
 
 namespace WebApi.Domain.Repositories
 {
+    /// <summary>
+    /// интерфейс репозитория 
+    /// </summary>
     public interface ICustomerRepository
     {
         public Task<IEnumerable<Customer>> GetAllAsync();

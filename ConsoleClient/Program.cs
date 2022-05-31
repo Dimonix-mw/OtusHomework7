@@ -33,6 +33,9 @@ while (true)
     }
 }
 
+/// <summary>
+/// получение customer по id
+/// </summary>
 static async Task GetCustomer(HttpClient client)
 {
     Console.Write("Enter id customer: ");
@@ -56,6 +59,11 @@ static async Task GetCustomer(HttpClient client)
     }
 }
 
+/// <summary>
+/// Генерация customer со случайным id
+/// Сначала проверяем есть ли уже такой customer
+/// Если не найден - генерация нового customer
+/// </summary>
 static async Task GenerateCustomer(HttpClient client)
 {
     try

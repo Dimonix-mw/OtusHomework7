@@ -6,6 +6,9 @@ namespace ConsoleClient.Repositories
 {
     public static class CustomerRepositories
     {
+        /// <summary>
+        /// Получение customer по id
+        /// </summary>
         public static async Task<Customer> GetCustomerByIdAsync(HttpClient client, long id)
         {
             Customer customer = null;
@@ -17,6 +20,10 @@ namespace ConsoleClient.Repositories
             return customer;
         }
 
+        /// <summary>
+        /// Создание customer с указанным id и генерацией остальных полей модели customer
+        /// если создан удачно то возврат id созданной записи, если нет - то возврат 0
+        /// </summary>
         public static async Task<long> CreateCustomerAsync(HttpClient client, long customerId)
         {
             var customerCreateRequest = new CustomerCreateRequest

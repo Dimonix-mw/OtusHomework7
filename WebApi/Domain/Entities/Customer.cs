@@ -2,6 +2,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WebApi.Domain.Entities
 {
+    /// <summary>
+    /// Модель Customer
+    /// </summary>
     public class Customer
     {
         public long CustomerId { get; init; }

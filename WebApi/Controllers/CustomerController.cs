@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Data.Repositories;
 using WebApi.Domain.Repositories;
 using WebApi.DTOs;
 
@@ -15,6 +14,12 @@ namespace WebApi.Controllers
             _customerRepository = customerRepository;
         }
 
+        /// <summary>
+        /// Контроллер получения Customer по Id
+        /// Если найден возвращается код 200 с данными о customer
+        /// Если не найден возврат кода 404
+        /// Если ошибка возврат кода 500
+        /// </summary>
         [HttpGet("{id:long}", Name = "GetCustomerById") ]
         public async Task<IActionResult> GetCustomerAsync([FromRoute] long id)
         {
@@ -33,6 +38,12 @@ namespace WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Контроллер создания Customer
+        /// Входной параметр DTO модель для создания customer
+        /// Если создан без оштбок - возврат кода 200 и id созданного customer
+        /// Если ошибка создания возврат кода 409 - пользователь с таким id уже существует
+        /// </summary>
         [HttpPost("")]
         public async Task<IActionResult> CreateCustomerAsync([FromBody] CreateCustomerDto createCustomerDto)
         {

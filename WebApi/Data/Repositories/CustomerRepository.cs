@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using System.Data;
 using WebApi.Domain.Entities;
 using WebApi.Domain.Repositories;
 using WebApi.DTOs;
@@ -35,7 +34,6 @@ namespace WebApi.Data.Repositories
             string sqlQuery = "INSERT into Customers (CustomerId, Firstname, Lastname) OUTPUT INSERTED.CustomerId values (@CustomerId, @Firstname, @Lastname)";
             using var connection = _context.CreateConnection();
             var customerId = await connection.ExecuteScalarAsync<long>(sqlQuery, createCustomerDto);
-            //Console.Write(customerId);
             return customerId;
         }
     }

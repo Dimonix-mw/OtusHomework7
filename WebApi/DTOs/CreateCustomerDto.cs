@@ -2,6 +2,9 @@
 
 namespace WebApi.DTOs
 {
+    /// <summary>
+    /// Модель запроса создания Customer
+    /// </summary>
     public class CreateCustomerDto
     {
         public long CustomerId { get; init; }
