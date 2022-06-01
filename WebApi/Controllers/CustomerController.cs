@@ -27,13 +27,10 @@ namespace WebApi.Controllers
             {
                 var customer = await _customerRepository.GetByIdAsync(id);
                 if (customer == null) return NotFound();
-                return Ok(
-                    customer
-                );
+                return Ok(customer);
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
                 return StatusCode(500, ex.Message);
             }
         }
@@ -41,7 +38,7 @@ namespace WebApi.Controllers
         /// <summary>
         /// Контроллер создания Customer
         /// Входной параметр DTO модель для создания customer
-        /// Если создан без оштбок - возврат кода 200 и id созданного customer
+        /// Если создан без ошибок - возврат кода 200 и id созданного customer
         /// Если ошибка создания возврат кода 409 - пользователь с таким id уже существует
         /// </summary>
         [HttpPost("")]
@@ -54,7 +51,6 @@ namespace WebApi.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
                 return StatusCode(409, ex.Message);
             }
         }
