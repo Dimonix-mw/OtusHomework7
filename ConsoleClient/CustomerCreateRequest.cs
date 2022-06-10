@@ -1,4 +1,4 @@
-namespace WebClient
+namespace ConsoleClient
 {
     public class CustomerCreateRequest
     {
