@@ -21,13 +21,13 @@ namespace ConsoleClient.Infrastructure
                 {
                     Console.Write("Enter id customer: ");
                     string customerIdStr = Console.ReadLine();
-                    long customerId;
-                    if (Int64.TryParse(customerIdStr, out customerId))
+                   
+                    if (Int64.TryParse(customerIdStr, out _))
                     {
-                        var customer = await _webApiService.GetCustomerByIdAsync(customerId);
+                        var customer = await _webApiService.GetCustomerByIdAsync(customerIdStr);
                         if (customer == null)
                         {
-                            Console.WriteLine($"Not fount customer with id = {customerId}");
+                            Console.WriteLine($"Not fount customer with id = {customerIdStr}");
                         }
                         else
                         {
@@ -46,7 +46,7 @@ namespace ConsoleClient.Infrastructure
                     {
                         var rnd = new Random();
                         var customerId = rnd.Next(1, 10);
-                        var customer = await _webApiService.GetCustomerByIdAsync(customerId);
+                        var customer = await _webApiService.GetCustomerByIdAsync(customerId.ToString());
                         if (customer == null)
                         {
                             var newId = await _webApiService.CreateCustomerAsync(customerId);

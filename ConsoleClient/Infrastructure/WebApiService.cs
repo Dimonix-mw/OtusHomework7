@@ -13,7 +13,7 @@ namespace ConsoleClient.Infrastructure
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<long> CreateCustomerAsync(long id)
+        public async Task<string> CreateCustomerAsync(long id)
         {
             var client = _httpClientFactory.CreateClient("http-api");
             var customerCreateRequest = new CustomerCreateRequest
@@ -22,17 +22,16 @@ namespace ConsoleClient.Infrastructure
                 Firstname = $"FirstName {id}",
                 Lastname = $"LastName {id}"
             };
-            long response_id = 0;
+            string idStr = "-1";
             var response = await client.PostAsJsonAsync("Customer", customerCreateRequest);
             if (response.IsSuccessStatusCode)
             {
-                var idStr = await response.Content.ReadAsStringAsync();
-                response_id = Int64.Parse(idStr);
+                idStr = await response.Content.ReadAsStringAsync();
             }
-            return id;
+            return idStr;
         }
 
-        public async Task<Customer> GetCustomerByIdAsync(long id)
+        public async Task<Customer> GetCustomerByIdAsync(string id)
         {
             var client = _httpClientFactory.CreateClient("http-api");
             Customer customer = null;
